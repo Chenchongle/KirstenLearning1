@@ -1,0 +1,6 @@
+username, password,displayName,firstName,middleName,lastName,gender,birthdate,email,phoneNumber,phoneCode,languageCode,postalCode, avatarFileId,pdpa,receiveSMS,receiveEmail,receiveDirectMail,posCustomerId,extraPhoneNumber,region
+osimtest001@hotmail.com,Osimtest1@,osimtest001@hotmail.com,Mickey1,mn1,Osim1,Female,1972/9/17,osimtest001@hotmail.com,11111111,65,en,123456,,TRUE,,TRUE,,,13100001,SG
+osimtest002@hotmail.com,Osimtest1@,osimtest002@hotmail.com,Mickey2,mn2,Osim2,Male,1972/9/18,osimtest002@hotmail.com,22222222,65,ch,123456,,TRUE,,TRUE,,,13100002,SG
+osimtest003@hotmail.com,Osimtest1@,osimtest003@hotmail.com,Mickey3,mn3,Osim3,Female,1972/9/19,osimtest003@hotmail.com,33333333,65,en,123456,,TRUE,,TRUE,,,13100003,SG
+osimtest004@hotmail.com,Osimtest1@,osimtest004@hotmail.com,Mickey4,mn4,Osim4,Male,1972/9/20,osimtest004@hotmail.com,44444444,65,ch,123456,,TRUE,,TRUE,,,13100004,SG
+osimtest005@hotmail.com,Osimtest1@,osimtest005@hotmail.com,Mickey5,mn5,Osim5,Female,1972/9/21,osimtest005@hotmail.com,55555555,65,en,123456,,TRUE,,TRUE,,,13100005,SG
