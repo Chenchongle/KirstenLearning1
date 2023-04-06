@@ -39,8 +39,8 @@ jobs:
           cd jm55/
           curl -O https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-$JMETER_VERSION.tgz
           tar -xvf apache-jmeter-$JMETER_VERSION.tgz 
-          echo "jmeter.save.saveservice.output_format=csv" >> /tmp/apache-jmeter-$JMETER_VERSION/bin/jmeter.properties
-          echo "jmeter.save.saveservice.response_data.on_error=true" >> /tmp/apache-jmeter-$JMETER_VERSION/bin/jmeter.properties
+          echo "jmeter.save.saveservice.output_format=csv" >> /jm55/apache-jmeter-$JMETER_VERSION/bin/jmeter.properties
+          echo "jmeter.save.saveservice.response_data.on_error=true" >> /jm55/apache-jmeter-$JMETER_VERSION/bin/jmeter.properties
           rm -rf apache-jmeter-$JMETER_VERSION/docs apache-jmeter-$JMETER_VERSION/printable_docs 
           cd apache-jmeter-$JMETER_VERSION/lib
           curl -O https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.2.1/cmdrunner-2.2.1.jar
