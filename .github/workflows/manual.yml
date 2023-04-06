@@ -63,7 +63,7 @@ jobs:
           -j jmeter_report/jmeter_logs/pf.log \
           -e \
           -o jmeter_report/PerfTestReport
-          /opt/jmeter/bin/JMeterPluginsCMD.bat --generate-png test.png --input-jtl 
+          /opt/jmeter/bin/JMeterPluginsCMD.bat --generate-png response.png --input-jtl jmeter_report/jmeter_logs/pf.jtl --plugin-type ResponseTimesOverTime --width 800 --height 600 
       
       - name: Upload Results
         uses: actions/upload-artifact@v2
