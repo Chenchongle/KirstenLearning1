@@ -62,9 +62,8 @@ jobs:
           curl -O https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.8/jmeter-plugins-manager-1.8.jar
           cd ..
           java  -jar cmdrunner-2.2.1.jar --tool org.jmeterplugins.repository.PluginManagerCMD install jpgc-graphs-basic, jpgc-cmd
-          cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/lib
 
-          cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/bin
+          # cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/bin
           ls
           mkdir -p -m 777 $GITHUB_WORKSPACE/jmeter_report/PerfTestReport
           mkdir -p -m 777 $GITHUB_WORKSPACE/jmeter_report/jmeter_logs
