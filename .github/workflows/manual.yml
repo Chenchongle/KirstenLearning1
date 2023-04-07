@@ -55,8 +55,8 @@ jobs:
           cp -r apache-jmeter-$JMETER_VERSION /opt/
           ls
           #ln -s /apache-jmeter-$JMETER_VERSION /opt/jmeter 
-          mkdir -p -m 777 /home/runner/work/QA_Auto_PerformanceTesting/QA_Auto_PerformanceTesting/jmeter_report/PerfTestReport
-          mkdir -p -m 777 /home/runner/work/QA_Auto_PerformanceTesting/QA_Auto_PerformanceTesting/jmeter_report/jmeter_logs
+          mkdir -p -m 777 /home/runner/work/KirstenLearning1/KirstenLearning1/jmeter_report/PerfTestReport
+          mkdir -p -m 777 /home/runner/work/KirstenLearning1/KirstenLearning1/jmeter_report/jmeter_logs
           
       - name: run jmeter
         env:
