@@ -98,6 +98,18 @@ jobs:
           name: PerfTestReport
           path: $GITHUB_WORKSPACE/jmeter_report 
           
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:    
+          server_address: ${{ secrets.SMTPSERVERHOST }}
+          server_port: ${{ secrets.SMTPSERVERPORT }}
+          username: ${{secrets.MAILUSERNAME}}
+          password: ${{secrets.MAILPASSWORD}}
+          subject: Kirsten Test
+          to: chongle.chen@osim.com.sg
+          from: GitHub Actions
+          attachments: $GITHUB_WORKSPACE/jmeter_logs/jmeter_report/response.png
+          
           
           
           
