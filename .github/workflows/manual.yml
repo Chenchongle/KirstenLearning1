@@ -67,6 +67,7 @@ jobs:
           # cp -r apache-jmeter-$JMETER_VERSION /opt/
 
           #ln -s /apache-jmeter-$JMETER_VERSION /opt/jmeter 
+          cd $GITHUB_WORKSPACE/
           mkdir -p -m 777 $GITHUB_WORKSPACE/jmeter_report/PerfTestReport
           mkdir -p -m 777 $GITHUB_WORKSPACE/jmeter_report/jmeter_logs
           pwd
