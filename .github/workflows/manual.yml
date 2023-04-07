@@ -90,13 +90,13 @@ jobs:
           cd jmeter_report/jmeter_logs/
           pwd
           ls
-          # /opt/apache-jmeter-$JMETER_VERSION/bin/JMeterPluginsCMD.bat --generate-png response.png --input-jtl jmeter_report/jmeter_logs/pf.jtl --plugin-type ResponseTimesOverTime --width 800 --height 600 
+          $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/bin/JMeterPluginsCMD.bat --generate-png $GITHUB_WORKSPACE/jmeter_logs/jmeter_report/response.png --input-jtl jmeter_report/jmeter_logs/pf.jtl --plugin-type ResponseTimesOverTime --width 800 --height 600 
       
       - name: Upload Results
         uses: actions/upload-artifact@v2
         with:
           name: PerfTestReport
-          path: /home/runner/work/QA_Auto_PerformanceTesting/QA_Auto_PerformanceTesting/jmeter_report 
+          path: $GITHUB_WORKSPACE/jmeter_report 
           
           
           
