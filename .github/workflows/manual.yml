@@ -67,8 +67,10 @@ jobs:
           # cp -r apache-jmeter-$JMETER_VERSION /opt/
 
           #ln -s /apache-jmeter-$JMETER_VERSION /opt/jmeter 
-          mkdir -p -m 777 /home/runner/work/KirstenLearning1/KirstenLearning1/jmeter_report/PerfTestReport
-          mkdir -p -m 777 /home/runner/work/KirstenLearning1/KirstenLearning1/jmeter_report/jmeter_logs
+          mkdir -p -m 777 $GITHUB_WORKSPACE/jmeter_report/PerfTestReport
+          mkdir -p -m 777 $GITHUB_WORKSPACE/jmeter_report/jmeter_logs
+          pwd
+          ls
         
           
       - name: run jmeter
@@ -76,6 +78,7 @@ jobs:
           JMETER_VERSION: 5.5   
         run: |
           # /opt/apache-jmeter-$JMETER_VERSION/bin/jmeter.sh \
+          pwd
           $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/bin/jmeter.sh \
           -n \
           -t JmeterFiles/PF_FullTestSuite.jmx \
@@ -83,6 +86,9 @@ jobs:
           -j jmeter_report/jmeter_logs/pf.log \
           -e \
           -o jmeter_report/PerfTestReport
+          cd jmeter_report/jmeter_logs/
+          pwd
+          ls
           # /opt/apache-jmeter-$JMETER_VERSION/bin/JMeterPluginsCMD.bat --generate-png response.png --input-jtl jmeter_report/jmeter_logs/pf.jtl --plugin-type ResponseTimesOverTime --width 800 --height 600 
       
       - name: Upload Results
