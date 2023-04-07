@@ -50,6 +50,8 @@ jobs:
           cd ..
           java  -jar cmdrunner-2.2.1.jar --tool org.jmeterplugins.repository.PluginManagerCMD install jpgc-graphs-basic, jpgc-cmd
 
+          cd ../..
+          ls
           cp -r apache-jmeter-$JMETER_VERSION /opt/
           ls
           #ln -s /apache-jmeter-$JMETER_VERSION /opt/jmeter 
@@ -67,7 +69,7 @@ jobs:
           -j jmeter_report/jmeter_logs/pf.log \
           -e \
           -o jmeter_report/PerfTestReport
-          /opt/jmeter/bin/JMeterPluginsCMD.bat --generate-png response.png --input-jtl jmeter_report/jmeter_logs/pf.jtl --plugin-type ResponseTimesOverTime --width 800 --height 600 
+          /opt/apache-jmeter-$JMETER_VERSION/bin/JMeterPluginsCMD.bat --generate-png response.png --input-jtl jmeter_report/jmeter_logs/pf.jtl --plugin-type ResponseTimesOverTime --width 800 --height 600 
       
       - name: Upload Results
         uses: actions/upload-artifact@v2
