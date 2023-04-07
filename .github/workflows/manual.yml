@@ -19,6 +19,10 @@ jobs:
     steps:
     # Runs a single command using the runners shell
       - uses: actions/checkout@v3
+      - name: where are the files?
+        run: |
+           pwd
+           ls
       - uses: actions/setup-java@v1
         with:
           java-version: '8.0.282'
@@ -63,14 +67,14 @@ jobs:
           #ln -s /apache-jmeter-$JMETER_VERSION /opt/jmeter 
           mkdir -p -m 777 /home/runner/work/KirstenLearning1/KirstenLearning1/jmeter_report/PerfTestReport
           mkdir -p -m 777 /home/runner/work/KirstenLearning1/KirstenLearning1/jmeter_report/jmeter_logs
+        
           
       - name: run jmeter
         env:
           JMETER_VERSION: 5.5   
         run: |
           # /opt/apache-jmeter-$JMETER_VERSION/bin/jmeter.sh \
-          cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/bin
-          ./jmeter.sh \
+          $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/bin/jmeter.sh \
           -n \
           -t JMeterFiles/PF_FullTestSuite.jmx \
           -l jmeter_report/jmeter_logs/pf.jtl \
