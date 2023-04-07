@@ -35,25 +35,31 @@ jobs:
         env:
           JMETER_VERSION: 5.5    
         run: |
-          mkdir jm55
-          cd jm55/
+          # mkdir jm55
+          # cd jm55/
           curl -O https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-$JMETER_VERSION.tgz
           tar -xvf apache-jmeter-$JMETER_VERSION.tgz 
           echo "jmeter.save.saveservice.output_format=csv" >> apache-jmeter-$JMETER_VERSION/bin/jmeter.properties
           echo "jmeter.save.saveservice.response_data.on_error=true" >> apache-jmeter-$JMETER_VERSION/bin/jmeter.properties
           rm -rf apache-jmeter-$JMETER_VERSION/docs apache-jmeter-$JMETER_VERSION/printable_docs 
-          cd apache-jmeter-$JMETER_VERSION/lib
-          curl -O https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.2.1/cmdrunner-2.2.1.jar
+          cd apache-jmeter-$JMETER_VERSION/bin
+          ./jmeter -v
+          pwd
           
+      - name: install plugins
+        env:
+          JMETER_VERSION: 5.5           
+        run: |  
+          cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/lib
+          curl -O https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.2.1/cmdrunner-2.2.1.jar          
           cd ext/
           curl -O https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.8/jmeter-plugins-manager-1.8.jar
           cd ..
           java  -jar cmdrunner-2.2.1.jar --tool org.jmeterplugins.repository.PluginManagerCMD install jpgc-graphs-basic, jpgc-cmd
 
-          cd ../..
-          ls
-          cp -r apache-jmeter-$JMETER_VERSION /opt/
-          ls
+          # cd ../..
+          # cp -r apache-jmeter-$JMETER_VERSION /opt/
+
           #ln -s /apache-jmeter-$JMETER_VERSION /opt/jmeter 
           mkdir -p -m 777 /home/runner/work/KirstenLearning1/KirstenLearning1/jmeter_report/PerfTestReport
           mkdir -p -m 777 /home/runner/work/KirstenLearning1/KirstenLearning1/jmeter_report/jmeter_logs
@@ -62,14 +68,16 @@ jobs:
         env:
           JMETER_VERSION: 5.5   
         run: |
-          /opt/apache-jmeter-$JMETER_VERSION/bin/jmeter.sh \
+          # /opt/apache-jmeter-$JMETER_VERSION/bin/jmeter.sh \
+          cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/bin
+          ./jmeter.sh \
           -n \
           -t JMeterFiles/PF_FullTestSuite.jmx \
           -l jmeter_report/jmeter_logs/pf.jtl \
           -j jmeter_report/jmeter_logs/pf.log \
           -e \
           -o jmeter_report/PerfTestReport
-          /opt/apache-jmeter-$JMETER_VERSION/bin/JMeterPluginsCMD.bat --generate-png response.png --input-jtl jmeter_report/jmeter_logs/pf.jtl --plugin-type ResponseTimesOverTime --width 800 --height 600 
+          # /opt/apache-jmeter-$JMETER_VERSION/bin/JMeterPluginsCMD.bat --generate-png response.png --input-jtl jmeter_report/jmeter_logs/pf.jtl --plugin-type ResponseTimesOverTime --width 800 --height 600 
       
       - name: Upload Results
         uses: actions/upload-artifact@v2
