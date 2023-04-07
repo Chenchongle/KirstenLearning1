@@ -78,7 +78,7 @@ jobs:
           # /opt/apache-jmeter-$JMETER_VERSION/bin/jmeter.sh \
           $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/bin/jmeter.sh \
           -n \
-          -t JMeterFiles/PF000_TestDataPreparation.jmx \
+          -t JmeterFiles/PF_FullTestSuite.jmx \
           -l jmeter_report/jmeter_logs/pf.jtl \
           -j jmeter_report/jmeter_logs/pf.log \
           -e \
