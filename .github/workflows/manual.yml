@@ -50,7 +50,7 @@ jobs:
           cd ..
           java  -jar cmdrunner-2.2.1.jar --tool org.jmeterplugins.repository.PluginManagerCMD install jpgc-graphs-basic, jpgc-cmd
 
-          ln -s /jm55/apache-jmeter-$JMETER_VERSION /opt/jmeter 
+          ln -s /apache-jmeter-$JMETER_VERSION /opt/jmeter 
           mkdir -p -m 777 /home/runner/work/QA_Auto_PerformanceTesting/QA_Auto_PerformanceTesting/jmeter_report/PerfTestReport
           mkdir -p -m 777 /home/runner/work/QA_Auto_PerformanceTesting/QA_Auto_PerformanceTesting/jmeter_report/jmeter_logs
           
