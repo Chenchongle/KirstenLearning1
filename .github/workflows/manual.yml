@@ -63,8 +63,10 @@ jobs:
           cd ..
           java  -jar cmdrunner-2.2.1.jar --tool org.jmeterplugins.repository.PluginManagerCMD install jpgc-graphs-basic, jpgc-cmd
 
-          # cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/bin
+          cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/lib
           ls
+          cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/lib/ext
+          pwd
           mkdir -p -m 777 $GITHUB_WORKSPACE/jmeter_report/PerfTestReport
           mkdir -p -m 777 $GITHUB_WORKSPACE/jmeter_report/jmeter_logs
           pwd
