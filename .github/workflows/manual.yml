@@ -103,7 +103,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: PerfTestReport
-          path: $GITHUB_WORKSPACE/jmeter_report/ 
+          path: /home/runner/work/KirstenLearning1/KirstenLearning1/jmeter_report/ 
           
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
@@ -115,7 +115,7 @@ jobs:
           subject: Kirsten Test
           to: chongle.chen@osim.com.sg
           from: GitHub Actions
-          attachments: $GITHUB_WORKSPACE/jmeter_report/jmeter_logs/response.png     
+          attachments: /home/runner/work/KirstenLearning1/KirstenLearning1/jmeter_report/jmeter_logs/response.png     
           
           
           
