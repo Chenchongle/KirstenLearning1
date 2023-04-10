@@ -57,13 +57,16 @@ jobs:
           JMETER_VERSION: 5.5           
         run: |  
           cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/lib
-          curl -O https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.2/cmdrunner-2.2.jar          
+          curl -O https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.2/cmdrunner-2.2.jar   
+          pwd
+          ls
           cd ext/
           curl -O https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.8/jmeter-plugins-manager-1.8.jar
           cd ..
           java  -jar cmdrunner-2.2.jar --tool org.jmeterplugins.repository.PluginManagerCMD install jpgc-graphs-basic,jpgc-cmd
 
           cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/lib
+          curl -O https://repo1.maven.org/maven2/kg/apc/cmdrunner/2.2/cmdrunner-2.2.jar  
           pwd
           ls
           cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/lib/ext
