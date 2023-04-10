@@ -93,7 +93,7 @@ jobs:
           cd jmeter_report/jmeter_logs/
           pwd
           ls
-          $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/bin/JMeterPluginsCMD.sh --generate-png $GITHUB_WORKSPACE/jmeter_logs/jmeter_report/response.png --input-jtl jmeter_report/jmeter_logs/pf.jtl --plugin-type ResponseTimesOverTime --width 800 --height 600 
+          $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/bin/JMeterPluginsCMD.sh --generate-png $GITHUB_WORKSPACE/jmeter_report/jmeter_logs/response.png --input-jtl $GITHUB_WORKSPACE/jmeter_report/jmeter_logs/pf.jtl --plugin-type ResponseTimesOverTime --width 800 --height 600 
       
       - name: Upload Results
         uses: actions/upload-artifact@v2
