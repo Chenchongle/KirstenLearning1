@@ -18,14 +18,14 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3        #checkout jmeter project source files.
       - name: where are the files?
         run: |
            pwd
            ls
            cd JmeterFiles/
            ls
-      - uses: actions/setup-java@v1
+      - uses: actions/setup-java@v1      #install java environment
         with:
           java-version: '8.0.282'
           java-package: jdk
@@ -33,7 +33,7 @@ jobs:
       - name: check JAVA version
         run:
           java -version
-      - name: install dependency
+      - name: install dependency         # install curl, for download jmeter plugins
         run: |
           sudo apt-get update
           sudo apt install curl -y
@@ -61,8 +61,11 @@ jobs:
           pwd
           ls
           cd ext/
+          # install jmeter plugin manager
           curl -O https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/1.8/jmeter-plugins-manager-1.8.jar
           cd ..
+          # install plugins:  jpgc-graphs-basic,jpgc-cmd
+          # for other plugins:  https://jmeter-plugins.org/ ,  https://jmeter-plugins.org/files/packages/
           java  -jar cmdrunner-2.2.jar --tool org.jmeterplugins.repository.PluginManagerCMD install jpgc-graphs-basic,jpgc-cmd
 
           cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/lib
@@ -93,13 +96,14 @@ jobs:
           cd jmeter_report/jmeter_logs/
           pwd
           ls
+          # run JMeterPluginsCMD to generate pictures
           $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/bin/JMeterPluginsCMD.sh --generate-png $GITHUB_WORKSPACE/jmeter_report/jmeter_logs/response.png --input-jtl $GITHUB_WORKSPACE/jmeter_report/jmeter_logs/pf.jtl --plugin-type ResponseTimesOverTime --width 800 --height 600 
       
       - name: Upload Results
         uses: actions/upload-artifact@v2
         with:
           name: PerfTestReport
-          path: $GITHUB_WORKSPACE/jmeter_report 
+          path: $GITHUB_WORKSPACE/jmeter_report/ 
           
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
@@ -111,7 +115,7 @@ jobs:
           subject: Kirsten Test
           to: chongle.chen@osim.com.sg
           from: GitHub Actions
-          attachments: $GITHUB_WORKSPACE/jmeter_logs/jmeter_report/response.png     
+          attachments: $GITHUB_WORKSPACE/jmeter_report/jmeter_logs/response.png     
           
           
           
