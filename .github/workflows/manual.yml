@@ -64,6 +64,7 @@ jobs:
           java  -jar cmdrunner-2.2.jar --tool org.jmeterplugins.repository.PluginManagerCMD install jpgc-graphs-basic,jpgc-cmd
 
           cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/lib
+          pwd
           ls
           cd $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/lib/ext
           pwd
@@ -73,8 +74,41 @@ jobs:
           pwd
 
         
-
+      - name: run jmeter
+        env:
+          JMETER_VERSION: 5.5   
+        run: |
+          # /opt/apache-jmeter-$JMETER_VERSION/bin/jmeter.sh \
+          pwd
+          $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/bin/jmeter.sh \
+          -n \
+          -t JmeterFiles/PF_FullTestSuite.jmx \
+          -l jmeter_report/jmeter_logs/pf.jtl \
+          -j jmeter_report/jmeter_logs/pf.log \
+          -e \
+          -o jmeter_report/PerfTestReport
+          cd jmeter_report/jmeter_logs/
+          pwd
+          ls
+          $GITHUB_WORKSPACE/apache-jmeter-$JMETER_VERSION/bin/JMeterPluginsCMD.bat --generate-png $GITHUB_WORKSPACE/jmeter_logs/jmeter_report/response.png --input-jtl jmeter_report/jmeter_logs/pf.jtl --plugin-type ResponseTimesOverTime --width 800 --height 600 
+      
+      - name: Upload Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: PerfTestReport
+          path: $GITHUB_WORKSPACE/jmeter_report 
           
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:    
+          server_address: ${{ secrets.SMTPSERVERHOST }}
+          server_port: ${{ secrets.SMTPSERVERPORT }}
+          username: ${{secrets.MAILUSERNAME}}
+          password: ${{secrets.MAILPASSWORD}}
+          subject: Kirsten Test
+          to: chongle.chen@osim.com.sg
+          from: GitHub Actions
+          attachments: $GITHUB_WORKSPACE/jmeter_logs/jmeter_report/response.png     
           
           
           
